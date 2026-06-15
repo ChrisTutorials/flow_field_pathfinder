@@ -1,10 +1,5 @@
-# Pathfinding (`pathfinding`)
+# Pathfinding GDScript Port
 
-Grid pathfinding (AStarGrid2D wrapper; premium tier = Rust GDExtension). Port of C# GridPathfinding.
+Port target for the future GDScript pathfinding plugin.
 
-**Canonical GDScript plugin** (sellable, drop-in, **GECS-free, no framework base**). Consumed by
-games via symlink into their `addons/pathfinding`. Port source: C# `projects/plugins/GridPathfinding` (reference only).
-
-```
-addons/pathfinding/        the shippable addon (this is what gets symlinked / sold)
-```
+No matching source exists under `/home/chris/gamedev/godot/projects/maintenance` yet, so this repository is intentionally empty except for the `addons/` placeholder.

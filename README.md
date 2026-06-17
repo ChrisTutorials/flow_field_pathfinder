@@ -11,7 +11,10 @@ No matching source exists under `/home/chris/gamedev/godot/projects/maintenance`
 
 ## Documentation
 
+- `docs/BOUNDARY.md` minimal local boundary pointer → canonical rule: `/home/chris/gamedev/godot/projects/docs/plugin-game-boundaries.md`
 - [Value proposition](docs/VALUE_PROPOSITION.md)
 - [Shared GECS-compatible pathfinding](docs/SHARED_ECS_PATHFINDING.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Health status](docs/HEALTH_STATUS.md)
+
+For repo-wide boundary rules, see the workspace index: `/home/chris/gamedev/godot/projects/docs/README.md`.

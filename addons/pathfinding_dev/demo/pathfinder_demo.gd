@@ -6,8 +6,9 @@ extends Node
 @onready var service: PathfinderService = PathfinderService.new()
 
 func _ready() -> void:
-    var fake_pathfinder := FakePathfinder.new()
-    service.initialize(fake_pathfinder)
+    var provider := GridAStarPathProvider.new()
+    provider.configure(Rect2i(0, 0, 8, 8), Vector2(16, 16))
+    service.initialize(provider)
 
     service.try_set_path(1, Vector2i(0, 0), Vector2i(2, 3))
     service.try_set_path(2, Vector2i(1, 1), Vector2i(1, 1))

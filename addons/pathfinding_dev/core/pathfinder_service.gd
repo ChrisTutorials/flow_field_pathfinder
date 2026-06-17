@@ -20,8 +20,8 @@ func initialize(pathfinder: Object) -> void:
 ## Returns true if the path was accepted by the underlying pathfinder.
 func try_set_path(entity_id: int, start: Vector2i, end: Vector2i) -> bool:
     _path_lock.lock()
-    var last_target = _last_targets.get(entity_id, end)
-    var changed := last_target != end
+    var last_target: Vector2i = _last_targets.get(entity_id, end)
+    var changed: bool = last_target != end
     _path_lock.unlock()
 
     if not changed and _has_active_waypoint(entity_id):
@@ -30,7 +30,7 @@ func try_set_path(entity_id: int, start: Vector2i, end: Vector2i) -> bool:
     if changed:
         clear_path(entity_id)
 
-    var accepted := _pathfinder.try_set_path(entity_id, start, end)
+    var accepted: bool = _pathfinder.try_set_path(entity_id, start, end)
     _path_lock.lock()
     _last_targets[entity_id] = end
     _path_lock.unlock()

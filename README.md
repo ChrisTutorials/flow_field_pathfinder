@@ -101,3 +101,7 @@ scons platform=linux target=template_debug  # or template_release
 ```
 
 The compiled `.so` goes into `addons/flow_field_pathfinder/bin/`.
+
+## License
+
+This plugin is distributed under the **Chris' Tutorials Plugin Asset License v1**. See [`LICENSE.md`](addons/flow_field_pathfinder/LICENSE.md) for the full terms.

@@ -1,3 +1,6 @@
 .sconsign.dblite
 cpp/src/*.os
 addons/flow_field_pathfinder/bin/*
+
+# Godot import cache
+.godot/

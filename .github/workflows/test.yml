@@ -43,6 +43,16 @@ jobs:
           unzip -o godot.zip -d godot-bin
           chmod +x godot-bin/*
 
+      - name: Import project (registers the GDExtension)
+        # --headless --import writes the .godot/ cache (extension_list.cfg,
+        # global_script_class_cache.cfg) that the --script run needs to resolve
+        # the GDExtension class. The import process aborts during editor-layout
+        # startup on a headless runner, but only AFTER the extension registry is
+        # written, so the non-zero exit is expected and tolerated here.
+        run: |
+          ./godot-bin/Godot_v${GODOT_VERSION}-stable_linux.x86_64 \
+            --headless --import --path . || true
+
       - name: Run correctness suite
         run: |
           ./godot-bin/Godot_v${GODOT_VERSION}-stable_linux.x86_64 \

@@ -1,0 +1,49 @@
+name: test
+
+# Builds the FlowFieldPathfinder GDExtension from source against godot-cpp and
+# runs the headless SceneTree correctness suite (tests/flow_field_test.gd).
+#
+# The engine + godot-cpp are pinned to the same 4.x stable line so the compiled
+# .so's GDExtension ABI matches the Godot that loads it. Bump both together when
+# a newer godot-cpp line is released.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  flow-field-test:
+    runs-on: ubuntu-latest
+    env:
+      GODOT_VERSION: "4.5"
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install scons
+        run: pip install scons
+
+      - name: Clone godot-cpp
+        run: git clone --depth 1 --branch "${GODOT_VERSION}" https://github.com/godotengine/godot-cpp godot-cpp
+
+      - name: Build extension
+        run: scons platform=linux target=template_debug -j$(nproc)
+        env:
+          GODOT_CPP_PATH: godot-cpp
+
+      - name: Download Godot
+        run: |
+          curl -fsSL -o godot.zip "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip"
+          unzip -o godot.zip -d godot-bin
+          chmod +x godot-bin/*
+
+      - name: Run correctness suite
+        run: |
+          ./godot-bin/Godot_v${GODOT_VERSION}-stable_linux.x86_64 \
+            --headless --path . --script res://tests/flow_field_test.gd

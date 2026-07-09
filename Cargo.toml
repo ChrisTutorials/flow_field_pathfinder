@@ -1,0 +1,3 @@
+[workspace]
+resolver = "2"
+members = ["crates/flow_field_core"]

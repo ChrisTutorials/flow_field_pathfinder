@@ -1,0 +1,9 @@
+[package]
+name = "flow_field_core"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Engine-free flow field core (aligned with moonbark_flow_field)"
+
+[lib]
+path = "src/lib.rs"
